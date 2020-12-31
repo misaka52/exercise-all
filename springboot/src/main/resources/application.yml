@@ -1,0 +1,21 @@
+spring:
+  profiles:
+    active: prod
+  datasource:
+    username: root
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: 123456
+
+mybatis:
+  # 指定mapper文件地址
+  mapper-locations: classpath:/mapper/*
+# logback配置哦
+logging:
+  # 指定格式及位置
+  pattern:
+    console: logs-%level||%msg%n
+  level:
+    root: info
+    # 指定包日志级别
+    com.ysc.springboot.runner.log: warn

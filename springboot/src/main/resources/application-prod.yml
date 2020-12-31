@@ -1,0 +1,12 @@
+app:
+  env: production
+
+#prop:
+#  studentList[0]: zhangsan
+#  studentList[1]: lisi
+#  studentList[2]: wangwu
+prop:
+  studentList:
+    - zhangsan
+    - lisi
+    - wangwu
