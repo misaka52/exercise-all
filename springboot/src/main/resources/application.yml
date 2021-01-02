@@ -6,16 +6,26 @@ spring:
     url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: 123456
+  thymeleaf:
+    # 开发阶段关闭缓存
+    cache: false
+    # 文件前缀，默认classpath:/templates/
+    prefix: classpath:/templates/
+    # 文件后缀，默认.html
+    suffix: .html
 
 mybatis:
-  # ָ��mapper�ļ���ַ
+  # ָ��mapper�ļ���ַ
   mapper-locations: classpath:/mapper/*
-# logback����Ŷ
+# logback����Ŷ
 logging:
-  # ָ����ʽ��λ��
+  # ָ����ʽ��λ��
   pattern:
-    console: logs-%level||%msg%n
+    # %t 调用线程名；@caller{1} 日志打印位置，1表示深度1
+    # %contextName：上下文名称；@level：日志级别
+    # %msg：日志信息；%n：换行符
+    console: LOG-%t %d{yyyy-MM-dd HH:mm:ss.SSS}||%caller{1}||%contextName||%level||%msg%n
   level:
     root: info
-    # ָ������־����
+    # ָ������־����
     com.ysc.springboot.runner.log: warn
