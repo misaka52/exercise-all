@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<bean id="userService"
+		  class="com.kkb.spring.service.UserServiceImpl" init-method="init">
+		<!-- 引用类型 -->
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+
+	<!-- 该类有一个初始化方法 -->
+	<bean id="userDao" class="com.kkb.spring.dao.UserDaoImpl"
+		  init-method="init">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="id" value="1" />
+	</bean>
+
+	<!-- 该类有一个初始化方法 -->
+	<bean id="dataSource"
+		  class="org.apache.commons.dbcp.BasicDataSource" scope="singleton">
+		<property name="driverClassName"
+				  value="com.mysql.jdbc.Driver"></property>
+		<property name="url"
+				  value="jdbc:mysql://localhost:3306/test"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="123456"></property>
+	</bean>
+</beans>

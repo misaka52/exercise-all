@@ -1,9 +1,6 @@
 package com.ysc.designpattern.singleton;
 
-import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
-import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
-
-import java.io.*;
+import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
@@ -12,7 +9,7 @@ import java.lang.reflect.InvocationTargetException;
  * @date 2021/1/2
  */
 public class SingletonRunner {
-    public static void main(String[] args) throws IOException, ClassNotFoundException, CloneNotSupportedException, IllegalAccessException, InstantiationException, InvocationTargetException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException, CloneNotSupportedException, IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException {
 //        LazySingleton instance = LazySingleton.getInstance();
 //        System.out.println(instance);
 
@@ -31,7 +28,7 @@ public class SingletonRunner {
 //        innerTest();
 
         invoker();
-        invoker();
+//        invoker();
     }
 
     static void innerTest() {
@@ -39,10 +36,9 @@ public class SingletonRunner {
         System.out.println(StaticInnerSingleton.getInstance());
     }
 
-    static void invoker() throws IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
+    static void invoker() throws IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException, NoSuchMethodException {
         Class clazz = Class.forName(EnumSingleton.class.getName());
-        Constructor[] constructors = clazz.getDeclaredConstructors();
-        Constructor constructor = constructors[0];
+        Constructor constructor = clazz.getDeclaredConstructor();
         constructor.setAccessible(true);
         System.out.println(constructor.newInstance());
     }
