@@ -1,7 +1,6 @@
 package com.ysc.springboot.pojo;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * class description:
@@ -11,7 +10,11 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product {
     private Integer id;
     private String name;
+
 }

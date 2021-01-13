@@ -3,7 +3,7 @@ spring:
     active: prod
   datasource:
     username: root
-    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowMultiQueries=true
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: 123456
   thymeleaf:
@@ -13,6 +13,8 @@ spring:
     prefix: classpath:/templates/
     # 文件后缀，默认.html
     suffix: .html
+  aop:
+    proxy-target-class: false
 
 mybatis:
   # ָ��mapper�ļ���ַ

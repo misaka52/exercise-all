@@ -14,13 +14,13 @@
 		  class="com.kkb.spring.service.UserServiceImpl" init-method="init">
 		<!-- 引用类型 -->
 		<property name="userDao" ref="userDao"></property>
+		<property name="id" value="1" />
 	</bean>
 
 	<!-- 该类有一个初始化方法 -->
 	<bean id="userDao" class="com.kkb.spring.dao.UserDaoImpl"
 		  init-method="init">
 		<property name="dataSource" ref="dataSource"></property>
-		<property name="id" value="1" />
 	</bean>
 
 	<!-- 该类有一个初始化方法 -->
@@ -32,5 +32,12 @@
 				  value="jdbc:mysql://localhost:3306/test"></property>
 		<property name="username" value="root"></property>
 		<property name="password" value="123456"></property>
+	</bean>
+
+	<bean id="serviceA" class="com.kkb.spring.service.ServiceA">
+		<property name="serviceB" ref="serviceB" />
+	</bean>
+	<bean id="serviceB" class="com.kkb.spring.service.ServiceB">
+		<property name="serviceA" ref="serviceA" />
 	</bean>
 </beans>

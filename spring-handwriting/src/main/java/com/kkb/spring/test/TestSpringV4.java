@@ -1,6 +1,8 @@
 package com.kkb.spring.test;
 
 import com.kkb.spring.po.User;
+import com.kkb.spring.service.ServiceA;
+import com.kkb.spring.service.ServiceB;
 import com.kkb.spring.service.UserService;
 import org.junit.Test;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
@@ -50,5 +52,18 @@ public class TestSpringV4 {
 
         UserService userService = (UserService) beanFactory.getBean(USER_SERVICE);
         dbQuery(userService);
+    }
+
+    @Test
+    public void circleDepend() {
+        String path = "spring/beans.xml";
+        DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
+        XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanFactory);
+        reader.loadBeanDefinitions(path);
+
+        ServiceA serviceA = (ServiceA) beanFactory.getBean("serviceA");
+        System.out.println(serviceA);
+        ServiceB serviceB = (ServiceB) beanFactory.getBean("serviceB");
+        System.out.println(serviceB);
     }
 }

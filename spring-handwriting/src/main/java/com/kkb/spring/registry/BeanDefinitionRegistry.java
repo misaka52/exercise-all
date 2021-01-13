@@ -17,4 +17,6 @@ public interface BeanDefinitionRegistry {
 	List<BeanDefinition> getBeanDefinitions();
 
 	void registerBeanDefinition(String beanName, BeanDefinition beanDefinition);
+
+	<T> List<T> getBeansByType(Class<T> clazz);
 }

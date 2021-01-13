@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+    <servlet>
+        <description></description>
+        <display-name>MyServlet</display-name>
+        <servlet-name>MyServlet</servlet-name>
+        <servlet-class>com.ysc.servlet.MyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MyServlet</servlet-name>
+        <url-pattern>/myservlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <description></description>
+        <display-name>DispatcherService</display-name>
+        <servlet-name>DispatcherService</servlet-name>
+        <servlet-class>com.ysc.springmvc.servlet.DispatcherService</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>springmvc.xml</param-value>
+        </init-param>
+<!--        表示tomcat启动时，DispatcherService就被创建了-->
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DispatcherService</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+</web-app>

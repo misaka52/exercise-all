@@ -20,16 +20,6 @@ public class UserDaoImpl implements UserDao {
 
 	private DataSource dataSource;
 	private Properties properties = new Properties();
-	// 测试字段
-	public int id;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;

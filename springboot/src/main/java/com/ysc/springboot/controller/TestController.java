@@ -2,6 +2,7 @@ package com.ysc.springboot.controller;
 
 import com.ysc.springboot.pojo.Product;
 import com.ysc.springboot.service.ProductService;
+import com.ysc.springboot.service.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +22,7 @@ import java.util.List;
 public class TestController {
 
     @Autowired
-    private ProductService productService;
+    private ProductService productServiceImpl;
     
     @GetMapping("hello")
     public String hello() {
@@ -41,11 +42,11 @@ public class TestController {
 
     @GetMapping("product/all")
     public List<Product> getAll() {
-        return productService.selectAll();
+        return productServiceImpl.selectAll();
     }
 
     @GetMapping("product/tx")
     public String productTx() {
-        return String.valueOf(productService.insertDouble());
+        return String.valueOf(productServiceImpl.insertDouble());
     }
 }

@@ -26,4 +26,12 @@
         values (#{id}, #{name})
     </insert>
 
+    <insert id="insertMuti">
+        <foreach collection="collection" item="item" separator=";">
+            insert into <include refid="tableName"></include>
+            (id, name)
+            values (#{item.id}, #{item.name})
+        </foreach>
+    </insert>
+
 </mapper>

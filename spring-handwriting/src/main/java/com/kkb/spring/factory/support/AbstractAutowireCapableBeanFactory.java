@@ -1,5 +1,8 @@
 package com.kkb.spring.factory.support;
 
+import com.kkb.spring.aware.Aware;
+import com.kkb.spring.aware.BeanFactoryAware;
+import com.kkb.spring.factory.BeanFactory;
 import com.kkb.spring.ioc.BeanDefinition;
 import com.kkb.spring.ioc.PropertyValue;
 import com.kkb.spring.ioc.RuntimeBeanReference;
@@ -31,6 +34,11 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 	private void initMethod(Object bean, BeanDefinition beanDefinition) {
 		// TODO 判断Bean是否是实现了Aware接口
+		if (bean instanceof Aware) {
+			if (bean instanceof BeanFactoryAware) {
+				((BeanFactoryAware) bean).setBeanFactory(this);
+			}
+		}
 		// TODO 判断是否实现了InitilizingBean接口，如果实现，则直接调用该bean的afterPropertiesSet方法去初始化
 		// 调用通过bean标签指定的初始化方法，比如通过init-method标签属性指定的方法
 		String initMethod = beanDefinition.getInitMethod();

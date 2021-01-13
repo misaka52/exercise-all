@@ -1,0 +1,11 @@
+<beans>
+    <bean id="beanUrlHandlerMapping" class="com.ysc.springmvc.handlermapping.BeanUrlHandlerMapping" init-method="init"></bean>
+    <bean id="simpleUrlHandlerMapping" class="com.ysc.springmvc.handlermapping.SimpleUrlHandlerMapping"></bean>
+    <bean id="requestMappingHandlerMapping" class="com.ysc.springmvc.handlermapping.RequestMappingHandlerMapping" init-method="init"></bean>
+    <bean id="httpRequestHandlerAdapter" class="com.ysc.springmvc.handleradapter.HttpRequestHandlerAdapter"></bean>
+    <bean id="simpleControllerHandlerAdapter" class="com.ysc.springmvc.handleradapter.SimpleControllerHandlerAdapter"></bean>
+    <bean id="requestMappingHandlerAdapter" class="com.ysc.springmvc.handleradapter.RequestMappingHandlerAdapter"></bean>
+    <bean name="/queryUser" class="com.ysc.springmvc.handler.QueryUserHandler"></bean>
+    <bean name="/queryGrade" class="com.ysc.springmvc.handler.QueryGradeHandler"></bean>
+    <bean name="queryCourseHandler" class="com.ysc.springmvc.controller.QueryCourseController"></bean>
+</beans>
