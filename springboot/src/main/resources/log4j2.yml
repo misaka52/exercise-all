@@ -4,9 +4,9 @@ Configuration:
   Properties: # 定义全局变量
     Property: # 缺省配置（用于开发环境）。其他环境需要在VM参数中指定，如下：
       - name: log.level.console
-        value: INFO
+        value: DEBUG
       - name: log.path
-        value: /export/Logs/
+        value: /Users/ysc/IdeaProjects/logs/
       - name: file.name
         value: ${hostName}
       - name: log.pattern

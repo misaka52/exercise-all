@@ -11,4 +11,5 @@ import java.util.List;
 public interface ProductService {
     public List<Product> selectAll();
     int insertDouble();
+    void selectInLock(List<Integer> ids) throws InterruptedException;
 }

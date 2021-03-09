@@ -1,0 +1,14 @@
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://server1:8001/eureka
+
+zuul:
+  prefix: /zuul
+  routes:
+    producer-8081: /p1/**
+    zuul-producer1: /p2/**
+
+server:
+  port: 8011

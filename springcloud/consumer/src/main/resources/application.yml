@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: consumer-8091
+server:
+  port: 8091
+eureka:
+  client:
+    service-url:
+      defaultZone: http://server1:8001/eureka
+feign:
+  client:
+    config:
+      default:
+        # 连接超时时间
+        connectTimeout: 2000
+        # 读超时时间
+        readTimeout: 5000
+      # 配置name=producer-8081的feignClient
+      producer-8081:
+        readTimeout: 2000
+  # feign支持对请求和响应进行压缩以提高通信效率
+  compression:
+    # 请求压缩的配置
+    request:
+      enabled: true
+      mime-types: ["text/xml", "application/xml", "application/json"]
+      min-request-size: 2048
+    # 响应压缩的配置
+    response:
+      enabled: true
+#  hystrix:
+#    enabled: true
+
+# 选择要负载的服务名
+producer-8081:
+  ribbon:
+    # 负载均衡策略
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+management:
+  endpoints:
+    web:
+      # 暴露端口
+      exposure:
+        include: "*"
+# 设置服务熔断时限
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
+
+

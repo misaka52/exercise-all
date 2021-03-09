@@ -1,0 +1,41 @@
+spring:
+  # 指定当前微服务对外暴露的名称
+  application:
+    name: producer-8081
+  jpa:
+    database: mysql
+  datasource:
+    username: root
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: 123456
+
+eureka:
+  client:
+    service-url:
+#      defaultZone: http://server1:8001/eureka,http://server2:8002/eureka,http://server3:8003/eureka
+      defaultZone: http://server1:8001/eureka
+  # 指定在eureka中的实例名
+  instance:
+    instance-id: eureka-producer-8081
+server:
+  port: 8081
+
+management:
+  # 开启所有监控端口
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  # 开启shutdown功能
+  endpoint:
+    shutdown:
+      enabled: true
+hystrix:
+  command:
+    default:
+      circuitBreaker:
+        # 开启熔断器，默认true
+        enabled: true
+        # 强制开启熔断器，默认false。开启熔断器后，对应配置的降级方法的接口，强制走降级策略，一帮方法正常提供服务
+        forceOpen: true

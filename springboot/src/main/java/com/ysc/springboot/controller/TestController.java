@@ -3,6 +3,7 @@ package com.ysc.springboot.controller;
 import com.ysc.springboot.pojo.Product;
 import com.ysc.springboot.service.ProductService;
 import com.ysc.springboot.service.ProductServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,13 +20,17 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("test")
+@Slf4j
 public class TestController {
 
     @Autowired
     private ProductService productServiceImpl;
     
     @GetMapping("hello")
-    public String hello() {
+    public String hello(String name) {
+        log.debug("进入hello方法");
+        log.info("你好,{}", name);
+        log.debug("退出hello方法");
         return "hello";
     }
     

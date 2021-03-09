@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -37,5 +38,15 @@ public class ProductServiceImpl implements ProductService {
         mapper.insert(product);
 
         return 2;
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void selectInLock(List<Integer> ids) throws InterruptedException {
+        for (Integer id : ids) {
+            mapper.selectInLock(id);
+            Thread.sleep(3000);
+        }
+        System.out.println("任务完成" + ids);
     }
 }

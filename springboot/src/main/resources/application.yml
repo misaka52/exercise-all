@@ -13,21 +13,33 @@ spring:
     prefix: classpath:/templates/
     # 文件后缀，默认.html
     suffix: .html
-  aop:
-    proxy-target-class: false
+#  aop:
+#    proxy-target-class: true
+  redis:
+    cluster:
+      # 可以只设置一个节点，集群内自动跳转。
+      nodes: 127.0.0.1:8001, 127.0.0.1:8002, 127.0.0.1:8003, 127.0.0.1:8004, 127.0.0.1:8005, 127.0.0.1:8006
+  wrap:
+    enable: true
+    prefix: AAA-
+    suffix: -BBB
 
 mybatis:
-  # ָ��mapper�ļ���ַ
+  # mapper配置
   mapper-locations: classpath:/mapper/*
-# logback����Ŷ
 logging:
-  # ָ����ʽ��λ��
-  pattern:
-    # %t 调用线程名；@caller{1} 日志打印位置，1表示深度1
-    # %contextName：上下文名称；@level：日志级别
-    # %msg：日志信息；%n：换行符
-    console: LOG-%t %d{yyyy-MM-dd HH:mm:ss.SSS}||%caller{1}||%contextName||%level||%msg%n
-  level:
-    root: info
-    # ָ������־����
-    com.ysc.springboot.runner.log: warn
+  config: classpath:log4j2.yml
+# logback配置
+#logging:
+#  # 日志配置
+#  pattern:
+#    # %t 调用线程名；@caller{1} 日志打印位置，1表示深度1
+#    # %contextName：上下文名称；@level：日志级别
+#    # %msg：日志信息；%n：换行符
+#    console: LOG-%t %d{yyyy-MM-dd HH:mm:ss.SSS}||%caller{1}||%contextName||%level||%msg%n
+#  level:
+#    root: info
+#    # 包日志级别配置
+#    com.ysc.springboot.runner.log: warn
+#  file:
+#    path: /Users/ysc/IdeaProjects/logs/

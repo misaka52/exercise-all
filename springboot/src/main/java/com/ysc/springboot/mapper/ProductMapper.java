@@ -23,4 +23,6 @@ public interface ProductMapper {
      * @return
      */
     int insertMuti(List<Product> products);
+
+    Product selectInLock(int id);
 }
