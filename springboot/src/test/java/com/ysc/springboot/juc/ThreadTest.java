@@ -13,7 +13,35 @@ public class ThreadTest {
     private volatile static boolean notStart = true;
     private volatile static boolean notEnd = true;
     public static void main(String[] args) throws Exception {
-        threadPriority();
+//        threadPriority();
+        thread();
+    }
+
+    static void thread() throws InterruptedException {
+        Thread thread = new Thread(() -> {
+            try {
+                Thread.sleep(20000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            for (int i = 0; i < 10; ++i) {
+                System.out.println(Thread.currentThread().getName());
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+        thread.interrupt();
+        for (int i = 0; i < 200; ++i) {
+            System.out.println("main");
+            if (i == 100) {
+                thread.join();
+            }
+        }
+
     }
 
     public static void threadPriority() throws InterruptedException {
