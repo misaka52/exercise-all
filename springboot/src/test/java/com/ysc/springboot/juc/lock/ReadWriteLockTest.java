@@ -2,14 +2,8 @@ package com.ysc.springboot.juc.lock;
 
 import lombok.SneakyThrows;
 
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
-import java.util.concurrent.locks.StampedLock;
+import java.util.concurrent.*;
+import java.util.concurrent.locks.*;
 
 /**
  * @author yuanshancheng
@@ -17,18 +11,54 @@ import java.util.concurrent.locks.StampedLock;
  */
 public class ReadWriteLockTest {
     public static void main(String[] args) throws InterruptedException {
+//        readWriteLock();
 //        countDownLatch();
-        cyclicBarrier();
+//        cyclicBarrier();
+        condition();
         System.out.println("end");
+    }
+
+    static void aqs() {
+        AbstractQueuedSynchronizer aqs;
+    }
+
+    static void lockSupport() {
+        LockSupport.park(1);
+    }
+
+    static void condition() throws InterruptedException {
+        ReentrantLock lock = new ReentrantLock();
+        Condition condition = lock.newCondition();
+        new Thread(() -> {
+            try {
+                lock.lock();
+                condition.await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+        Thread.sleep(3000);
+        lock.lock();
+        condition.signal();
+        lock.unlock();
     }
 
     static void readWriteLock() {
         ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
-        readWriteLock.readLock();
+        readWriteLock.writeLock().lock();
+        readWriteLock.readLock().lock();
     }
 
     static void reentrantLock() {
-        ReentrantLock reentrantLock;
+        ReentrantLock reentrantLock = new ReentrantLock();
+        reentrantLock.lock();
+        reentrantLock.unlock();
+        try {
+            reentrantLock.tryLock(1, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Condition condition = reentrantLock.newCondition();
     }
 
     static void stampedLock() {

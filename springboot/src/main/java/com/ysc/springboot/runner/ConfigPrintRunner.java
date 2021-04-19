@@ -1,13 +1,10 @@
 package com.ysc.springboot.runner;
 
-import com.ysc.exercise.service.WrapService;
 import com.ysc.springboot.IConfig;
 import com.ysc.springboot.config.CommonConfig;
 import com.ysc.springboot.config.EnvConfig;
 import com.ysc.springboot.config.PropConfig;
-import com.ysc.springboot.pojo.Product;
 import com.ysc.springboot.service.ProductService;
-import com.ysc.springboot.service.ProductServiceImpl;
 import com.ysc.springboot.service.ServiceA;
 import com.ysc.springboot.service.ServiceB;
 import lombok.extern.slf4j.Slf4j;
@@ -34,12 +31,14 @@ public class ConfigPrintRunner implements CommandLineRunner {
     private PropConfig propConfig;
     @Autowired
     private ProductService productService2;
+//    @Autowired
+//    private ProductServiceImpl productServiceImpl;
     @Autowired
     private ServiceA serviceA;
     @Autowired
     private ServiceB serviceB;
-    @Autowired
-    private WrapService wrapService;
+//    @Autowired
+//    private WrapService wrapService;
 
     @Override
     public void run(String... args) throws Exception {
@@ -48,6 +47,6 @@ public class ConfigPrintRunner implements CommandLineRunner {
         log.info("propConfig:{}", propConfig);
         log.info("serviceA:{}", serviceA.getServiceB().hello());
         log.info("serviceB:{}", serviceB.getServiceA().hello());
-        log.info("wrapService:{}", wrapService.wrap("test"));
+//        log.info("wrapService:{}", wrapService.wrap("test"));
     }
 }

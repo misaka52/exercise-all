@@ -23,6 +23,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class ProductServiceImpl implements ProductService {
     private final ProductMapper mapper;
 
+    @Override
     public List<Product> selectAll() {
         return mapper.selectAll();
     }

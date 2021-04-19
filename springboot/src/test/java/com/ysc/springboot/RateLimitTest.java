@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.TimeUnit;
 
 import static java.util.concurrent.ForkJoinPool.defaultForkJoinWorkerThreadFactory;
 
@@ -15,16 +16,17 @@ import static java.util.concurrent.ForkJoinPool.defaultForkJoinWorkerThreadFacto
  * @date 2021/1/30
  */
 public class RateLimitTest {
-    public static void main(String[] args) {
-        ExecutorService executorService =
-                new ForkJoinPool(100, defaultForkJoinWorkerThreadFactory, null, true);
-        RateLimiter rateLimiter = RateLimiter.create(1);
-        for (int i = 1; i < 10; ++i) {
-            Double acquire = null;
-            acquire = rateLimiter.acquire(i);
-            System.out.println(i + "个消耗耗时" + acquire + "s");
-//            executorService.submit(new MyRunnable(String.format("第%s个任务，耗时%f", i, acquire)));
+    public static void main(String[] args) throws InterruptedException {
+        RateLimiter rateLimiter = RateLimiter.create(5, 1, TimeUnit.SECONDS);
+//        RateLimiter rateLimiter = RateLimiter.create(5);
+        for (int i = 0; i < 5; ++i) {
+            System.out.println(rateLimiter.acquire());
         }
+        Thread.sleep(1000);
+        for (int i = 0; i < 5; ++i) {
+            System.out.println(rateLimiter.acquire());
+        }
+        System.out.println("end");
     }
 
     static class MyRunnable implements Runnable {

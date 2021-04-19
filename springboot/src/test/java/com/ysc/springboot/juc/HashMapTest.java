@@ -2,6 +2,7 @@ package com.ysc.springboot.juc;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 
 /**
  * @author yuanshancheng
@@ -20,5 +21,6 @@ public class HashMapTest {
 //            map.remove(2);
             map.put(4, "111");
         }
+
     }
 }

@@ -13,16 +13,18 @@ spring:
     prefix: classpath:/templates/
     # 文件后缀，默认.html
     suffix: .html
-#  aop:
-#    proxy-target-class: true
-  redis:
-    cluster:
-      # 可以只设置一个节点，集群内自动跳转。
-      nodes: 127.0.0.1:8001, 127.0.0.1:8002, 127.0.0.1:8003, 127.0.0.1:8004, 127.0.0.1:8005, 127.0.0.1:8006
+  aop:
+    proxy-target-class: false
+#    cluster:
+#      # 可以只设置一个节点，集群内自动跳转。
+#      nodes: 127.0.0.1:8001, 127.0.0.1:8002, 127.0.0.1:8003, 127.0.0.1:8004, 127.0.0.1:8005, 127.0.0.1:8006
   wrap:
     enable: true
     prefix: AAA-
     suffix: -BBB
+  redis:
+    port: 6379
+    host: 127.0.0.1
 
 mybatis:
   # mapper配置
@@ -42,4 +44,7 @@ logging:
 #    # 包日志级别配置
 #    com.ysc.springboot.runner.log: warn
 #  file:
+server:
+  servlet:
+    context-path: /sp
 #    path: /Users/ysc/IdeaProjects/logs/

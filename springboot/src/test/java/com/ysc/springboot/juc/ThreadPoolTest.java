@@ -8,7 +8,13 @@ import java.util.concurrent.*;
  */
 public class ThreadPoolTest {
     public static void main(String[] args) {
-
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(5,
+                10,
+                60,
+                TimeUnit.SECONDS,
+                new LinkedBlockingDeque<>(100));
+//        threadPoolExecutor.execute();
+        threadPoolExecutor.shutdown();
     }
 
     static void fixed() {

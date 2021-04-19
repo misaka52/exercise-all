@@ -2,6 +2,7 @@ package com.ysc.springboot.juc;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -14,7 +15,25 @@ public class ThreadTest {
     private volatile static boolean notEnd = true;
     public static void main(String[] args) throws Exception {
 //        threadPriority();
-        thread();
+//        thread();
+
+        callable();
+        System.out.println("end");
+    }
+
+    static void callable() throws ExecutionException, InterruptedException {
+        MyThread2 thread = new MyThread2();
+        ExecutorService executor = Executors.newCachedThreadPool();
+        Future future = executor.submit(thread);
+        System.out.println(future.get());
+    }
+
+    static class MyThread2 implements Callable {
+
+        @Override
+        public Object call() throws Exception {
+            return 1;
+        }
     }
 
     static void thread() throws InterruptedException {
