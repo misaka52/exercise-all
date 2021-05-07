@@ -37,5 +37,5 @@ hystrix:
       circuitBreaker:
         # 开启熔断器，默认true
         enabled: true
-        # 强制开启熔断器，默认false。开启熔断器后，对应配置的降级方法的接口，强制走降级策略，一帮方法正常提供服务
-        forceOpen: true
+        # 强制开启熔断器，默认false。开启熔断器后，对应配置的降级方法的接口，强制走降级策略，其他方法正常提供服务
+#        forceOpen: true

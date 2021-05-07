@@ -14,7 +14,19 @@ public class MemoryTest {
     private static final int ONE_M = 1024 * 1024;
     public static void main(String[] args) {
 //        memory();
-        metaspaceOOM();
+//        metaspaceOOM();
+        new Thread(() -> {
+            deadLoop();
+        }).start();
+        deadLoop();
+    }
+
+    static void deadLoop() {
+        int i = 1;
+        while (true) {
+            i += 1;
+            i *= i;
+        }
     }
 
     static void metaspaceOOM() {

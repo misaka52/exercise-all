@@ -40,6 +40,7 @@ public class ReadWriteLockTest {
         Thread.sleep(3000);
         lock.lock();
         condition.signal();
+        condition.signalAll();
         lock.unlock();
     }
 
@@ -47,6 +48,7 @@ public class ReadWriteLockTest {
         ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
         readWriteLock.writeLock().lock();
         readWriteLock.readLock().lock();
+        readWriteLock.readLock().unlock();
     }
 
     static void reentrantLock() {
@@ -63,6 +65,10 @@ public class ReadWriteLockTest {
 
     static void stampedLock() {
         StampedLock stampedLock = new StampedLock();
+        stampedLock.readLock();
+        stampedLock.writeLock();
+        stampedLock.tryOptimisticRead();
+        stampedLock.validate(2312L);
     }
 
     static void countDownLatch() throws InterruptedException {

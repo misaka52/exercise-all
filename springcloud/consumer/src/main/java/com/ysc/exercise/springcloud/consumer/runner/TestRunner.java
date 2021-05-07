@@ -40,11 +40,11 @@ public class TestRunner implements CommandLineRunner {
     }
 
     private void producerFeign() {
-//        log.info("hello():{}", producerTempClient.hello());
+        log.info("hello():{}", producerTempClient.hello());
 //        log.info("getById(1):{}", producerTempClient.getById(1));
-//        log.info("sleep(1):{}", producerTempClient.sleep(1));
+        log.info("sleep(1):{}", producerTempClient.sleep(1));
         // 读超时不会触发降级方法回调
-//        log.info("sleep(3):{}", producerTempClient.sleep(3));
+        log.info("sleep(3):{}", producerTempClient.sleep(3));
         log.info("error():{}", producerTempClient.error());
     }
 }

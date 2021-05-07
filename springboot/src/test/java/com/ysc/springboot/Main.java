@@ -3,6 +3,8 @@ package com.ysc.springboot;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import com.ysc.springboot.datastruct.LRUCache;
+import com.ysc.springboot.datastruct.LRUCache2;
 import org.ehcache.CacheManager;
 import org.ehcache.config.builders.CacheConfigurationBuilder;
 import org.ehcache.config.builders.CacheManagerBuilder;
@@ -21,6 +23,25 @@ import java.util.concurrent.TimeUnit;
  */
 public class Main {
     public static void main(String[] args) {
+       lruTest();
+    }
+
+    static void lruTest() {
+        LRUCache<Integer, String> cache = new LRUCache2<>(3);
+        cache.set(1, "a");
+        cache.set(2, "b");
+        cache.set(3, "c");
+        cache.print();
+        cache.get(1);
+        cache.print();
+        cache.set(2, "bb");
+        cache.print();
+
+        cache.set(4, "d");
+        cache.print();
+    }
+
+    static void cache() {
         Cache<String, String> cache = CacheBuilder.newBuilder()
                 .maximumSize(100)
                 .expireAfterWrite(120, TimeUnit.SECONDS)

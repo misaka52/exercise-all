@@ -12,9 +12,9 @@ feign:
     config:
       default:
         # 连接超时时间
-        connectTimeout: 2000
+        connectTimeout: 1000
         # 读超时时间
-        readTimeout: 5000
+        readTimeout: 2000
       # 配置name=producer-8081的feignClient
       producer-8081:
         readTimeout: 2000
@@ -49,6 +49,6 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 3000
+            timeoutInMilliseconds: 2000
 
 

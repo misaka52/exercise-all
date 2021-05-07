@@ -4,6 +4,7 @@ import com.ysc.springboot.mapper.ProductMapper;
 import com.ysc.springboot.pojo.Product;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -22,6 +23,7 @@ import java.util.concurrent.ThreadLocalRandom;
 @Slf4j
 public class ProductServiceImpl implements ProductService {
     private final ProductMapper mapper;
+    private final StringRedisTemplate redisTemplate;
 
     @Override
     public List<Product> selectAll() {

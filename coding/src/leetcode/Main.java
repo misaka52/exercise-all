@@ -10,6 +10,9 @@ public class Main {
     public static void main(String[] args) {
 //        new Temp().reversePairs(new int[]{7, 5, 6, 4});
         System.out.println(new Temp().LCS("1A2", "12"));
+        String s = "abc";
+        System.out.println(s.hashCode());
+        System.out.println(s.hashCode());
     }
 
     private static void order(Integer i) {

@@ -6,7 +6,7 @@ package com.ysc.springboot.jvm.eight;
  */
 public class Assign {
     public static void main(String[] args) {
-        dynamicAssign();
+        staticAssign();
     }
 
     static void dynamicAssign() {
@@ -37,6 +37,7 @@ public class Assign {
         }
     }
 
+    // 静态分派
     static void staticAssign() {
         Human man = new Man();
         Human woman = new Woman();

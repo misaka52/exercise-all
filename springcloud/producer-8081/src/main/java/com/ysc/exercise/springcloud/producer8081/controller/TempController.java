@@ -42,7 +42,6 @@ public class TempController {
 
     @GetMapping("discovery")
     public Object discovery() {
-        // 只能获取到consumer？？
         List<String> services = discoveryClient.getServices();
         for (String name :services) {
             List<ServiceInstance> instances = discoveryClient.getInstances(name);

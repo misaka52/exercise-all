@@ -1,6 +1,7 @@
 package com.ysc.exercise.springcloud.consumer.client;
 
 import com.ysc.exercise.springcloud.consumer.dto.Product;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Component
 @RequestMapping("fallback/temp")
+@Slf4j
 public class ProducerTempClientHystrix implements ProducerTempClient {
     @Override
     public String hello() {
@@ -18,6 +20,7 @@ public class ProducerTempClientHystrix implements ProducerTempClient {
 
     @Override
     public Product getById(Integer id) {
+        log.warn("降级");
         return null;
     }
 

@@ -11,8 +11,8 @@ import java.lang.reflect.Proxy;
  */
 public class ProxyRunner {
     public static void main(String[] args) {
-//        jdkDynamicProxy();
-        cglibDynamicProxy();
+        jdkDynamicProxy();
+//        cglibDynamicProxy();
     }
 
     static void jdkDynamicProxy() {

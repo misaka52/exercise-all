@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author yuanshancheng
  * @date 2021/1/25
  */
+//@FeignClient(value = "producer-8081", fallbackFactory = ProducerTempBackFactory.class)
 @FeignClient(value = "producer-8081", fallback = ProducerTempClientHystrix.class)
 @RequestMapping("temp")
 public interface ProducerTempClient {
